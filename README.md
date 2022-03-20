@@ -1,1 +1,1 @@
-# The AliX Tech Token Website Source Code
+# The AliX Tech Token Source Code
