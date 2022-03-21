@@ -1,6 +1,6 @@
 pragma solidity ^0.7.0;
 // SPDX-License-Identifier: MIT
-// The AliX Tech Token pool contract (beta) made by Yanis !
+// The AliX Tech Token pool contract made by AliX !
 // You can copy it along u mention me and The AliX Tech Token :D
 
 library SafeMath {
