@@ -1,7 +1,7 @@
 pragma solidity ^0.7.0;
 // SPDX-License-Identifier: MIT
-// SiriCoin pool contract (beta) made by Yanis !
-// You can copy it along u mention me and SiriCoin :D
+// The AliX Tech Token pool contract (beta) made by Yanis !
+// You can copy it along u mention me and The AliX Tech Token :D
 
 library SafeMath {
     /**
@@ -146,7 +146,7 @@ library SafeMath {
     }
 }
 
-interface SiriCoinInterface {
+interface The AliX Tech Token Interface {
 	function _mint(uint256 nonce, bytes32 challenge_digest, address _miner, uint256 feeToPool, address pool) external returns (bool);
 	function transfer(address to, uint256 amount) external returns (bool);
 	function balanceOf(address tokenOwner) external view returns (uint256);
@@ -193,19 +193,19 @@ contract Owned {
     }
 }
 
-contract SiriCoinPPS is Owned {
+contract The AliX Tech Token PPS is Owned {
 	using SafeMath for uint256;
 	uint256 public _MAXIMUM_TARGET;
 	uint256 public _MINIMUM_TARGET;
 	uint256 public miningTarget;
-	SiriCoinInterface public SiriCoin;
+	The AliX Tech Token Interface public The AliX Tech Token ;
 	mapping (bytes32 => bool) resultExists;
 	
-	constructor(SiriCoinInterface _SiriCoin, uint256 _startDiff) {
+	constructor(The AliX Tech Token Interface _The AliX Tech Token , uint256 _startDiff) {
 		require(_startDiff > 0, "Start diff cannot be zero !");
-		SiriCoin = _SiriCoin;
-		_MINIMUM_TARGET = _SiriCoin._MINIMUM_TARGET();
-		_MAXIMUM_TARGET = _SiriCoin._MAXIMUM_TARGET();
+		The AliX Tech Token  = _The AliX Tech Token ;
+		_MINIMUM_TARGET = _The AliX Tech Token ._MINIMUM_TARGET();
+		_MAXIMUM_TARGET = _The AliX Tech Token ._MAXIMUM_TARGET();
 		miningTarget = _MAXIMUM_TARGET/_startDiff;
 	}
 	
@@ -223,25 +223,25 @@ contract SiriCoinPPS is Owned {
 	}
 	
 	function getChallengeNumber() public view returns (bytes32) {
-		return SiriCoin.getChallengeNumber();
+		return The AliX Tech Token .getChallengeNumber();
 	}
 	
 	function getMiningReward() public view returns (uint256) {
 		uint256 _reward;
-		_reward = SiriCoin.getMiningReward().mul(getMiningDifficulty()).div(SiriCoin.getMiningDifficulty());
-		if (_reward > SiriCoin.getMiningReward()) {
-			_reward = SiriCoin.getMiningReward();
+		_reward = The AliX Tech Token .getMiningReward().mul(getMiningDifficulty()).div(The AliX Tech Token .getMiningDifficulty());
+		if (_reward > The AliX Tech Token .getMiningReward()) {
+			_reward = The AliX Tech Token .getMiningReward();
 		}
 		return _reward;
 	}
 	function _mint(uint256 nonce, bytes32 challenge_digest, address _miner, uint256 feeToPool, address pool) public returns (bool) {
-		bytes32 n = keccak256(abi.encodePacked(keccak256(abi.encodePacked(SiriCoin.getChallengeNumber(), _miner, nonce))));
+		bytes32 n = keccak256(abi.encodePacked(keccak256(abi.encodePacked(The AliX Tech Token .getChallengeNumber(), _miner, nonce))));
 		require(challenge_digest == n, "Your result dont match");
 		require(n <= bytes32(miningTarget), "Difficulty unmatched");
 		require(!resultExists[n], "Result already sumbitted baby... u look like me at exams");
 		resultExists[n] = true;
-		if (n <= bytes32(SiriCoin.getMiningTarget())) {
-			SiriCoin._mint(nonce, n, _miner, 100, address(this));
+		if (n <= bytes32(The AliX Tech Token .getMiningTarget())) {
+			The AliX Tech Token ._mint(nonce, n, _miner, 100, address(this));
 		}
 		uint256 totalReward = getMiningReward();
 		uint256 minerRewards;
@@ -249,12 +249,12 @@ contract SiriCoinPPS is Owned {
 		if (feeToPool > 0) {
 			poolFees = (totalReward.mul(feeToPool)).div(100);
 			minerRewards = totalReward.sub(poolFees);
-			SiriCoin.transfer(pool, poolFees);
+			The AliX Tech Token .transfer(pool, poolFees);
 		}
 		else {
 			minerRewards = totalReward;
 		}
-		SiriCoin.transfer(_miner, minerRewards);
+		The AliX Tech Token .transfer(_miner, minerRewards);
 		return true;
 	}
 }
