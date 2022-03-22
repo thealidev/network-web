@@ -1,6 +1,4 @@
 web3
 flask_cors
 flask
-eth_account
-json
 requests
