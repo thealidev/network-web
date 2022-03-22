@@ -1,0 +1,11 @@
+{
+	"privateKey":"No credentials there .. Sorry",
+	"poolFee":10,
+	"gasPrice":10,
+	"maxGasPrice":15,
+	"autoGasPrice":true,
+	"port":5001,
+	"feeRecipient": "",
+	"gasMultiplier":1000000000,
+	"ssl": ["cert.pem","privkey.pem"]
+}
