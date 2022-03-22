@@ -18,7 +18,7 @@ pool = polygon.eth.contract(address="0x9488901151d3bc6050F7Fd46d5D85D0Ffb3383a9"
 try:
     context = tuple(config["ssl"])
 except:
-    context = ("/etc/letsencrypt/live/siricoinpool.dynamic-dns.net/fullchain.pem", "/etc/letsencrypt/live/siricoinpool.dynamic-dns.net/privkey.pem")
+    context = ("./cert.pem", "./privkey.pem")
 
 _configfile = open(configfile, "r")
 config = json.load(_configfile)
