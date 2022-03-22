@@ -30,7 +30,7 @@ class Wallet {
 	}
 	
 	async getAccountInfo(account) {
-		return (await (await fetch(`..../accounts/accountInfo/${account}`)).json()).result;
+		return (await (await fetch(`https://68.183.178.18:5001/accounts/accountInfo/${account}`)).json()).result;
 	}
 
 	async getHeadTx(account) {
@@ -62,7 +62,7 @@ class Wallet {
 
 	async sendTransaction(signedTx) {
 		console.log(signedTx);
-		return (await (await fetch(`https://siricoin-node-1.dynamic-dns.net:5005/send/rawtransaction/?tx=${signedTx}`)).json()).result;
+		return (await (await fetch(`https://68.183.178.18:5001/send/rawtransaction/?tx=${signedTx}`)).json()).result;
 	}
 	
 	getVrs(sig) {
