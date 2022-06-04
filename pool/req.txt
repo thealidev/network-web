@@ -1,4 +1,0 @@
-web3
-flask_cors
-flask
-requests
